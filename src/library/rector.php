@@ -18,7 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
 	$parameters->set(Option::AUTOLOAD_PATHS, [
 		// autoload specific file
-		__DIR__ . '/qa-bootstrap.php',
+		realpath(getcwd()) . '/vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php',
 	]);
 
 	// get services
