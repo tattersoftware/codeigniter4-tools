@@ -15,7 +15,11 @@ if (empty($args))
 	return;
 }
 
-$file = realpath($args[1]);
+if (! $file = realpath($args[1]))
+{
+	echo 'Invalid file supplied: "' . $args[1] . '"' . PHP_EOL;
+	return;
+}
 
 echo "Processing {$file}..." . PHP_EOL;
 

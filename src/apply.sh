@@ -13,12 +13,14 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
+# Determine the absolute target
+cd "$1"
+TARGET=`pwd`
+echo "Applying developer tools to $TARGET"
+
 # Determine the absolute directory for this script
 cd `dirname "$0"`
 TOOLS=`pwd`
-
-TARGET="$1"
-echo "Applying developer tools to $TARGET"
 
 # Change to the repo directory
 cd "$TARGET"
@@ -56,10 +58,23 @@ if [ $RESULT -ne 0 ]; then
 	exit $RESULT
 fi
 
+# Make sure this package is included
+composer require tatter/tools
+
 # Update to make sure we have the rest of the tools
 composer update
 
 # Normalize composer.json
 composer normalize "$TARGET"/composer.json
+
+# Determine project versus library
+if [ -d "$TARGET"/app ]; then
+	SOURCE="$TOOLS"/Project
+else
+	SOURCE="$TOOLS"/Library
+fi
+
+# Copy missing files
+cp -R -n "$SOURCE"/. "$TARGET"
 
 exit 0
