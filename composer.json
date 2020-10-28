@@ -1,0 +1,56 @@
+{
+	"name": "tatter/tools",
+	"description": "Developer tools for CodeIgniter 4",
+	"keywords": [
+		"codeigniter",
+		"codeigniter4",
+		"tools",
+		"toolkit",
+		"development"
+	],
+	"homepage": "https://github.com/tattersoftware/codeigniter4-tools",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Matthew Gatner",
+			"email": "mgatner@tattersoftware.com",
+			"homepage": "https://tattersoftware.com",
+			"role": "Developer"
+		}
+	],
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/codeigniter4/CodeIgniter4"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php" : ">=7.2",
+		"codeigniter4/codeigniter4-standard": "^1.0",
+		"fakerphp/faker": "^1.10",
+		"mikey179/vfsstream": "^1.6",
+		"phpstan/phpstan": "^0.12",
+		"phpunit/phpunit": "^8.5",
+		"squizlabs/php_codesniffer": "^3.5"
+	},
+	"require-dev": {
+		"codeigniter4/codeigniter4": "dev-develop"
+	},
+	"autoload": {
+		"psr-4": {
+			"Tatter\\Tools\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\Support\\": "tests/_support"
+		}
+	},
+	"scripts": {
+		"analyze": "phpstan analyze",
+		"style": "phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 src/ tests/",
+		"test": "phpunit"
+	}
+}
