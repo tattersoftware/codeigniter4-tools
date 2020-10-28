@@ -54,6 +54,7 @@ if [ $RESULT -ne 0 ]; then
 	exit $RESULT
 fi
 
-
+# Normalize the resulting composer.json
+composer normalize "$TARGET"/composer.json
 
 exit 0
