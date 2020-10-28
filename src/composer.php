@@ -8,9 +8,6 @@
  * Usage: php composer.php /path/to/composer.json
  */
 
-use SebastianBergmann\Diff\Differ;
-use SebastianBergmann\Diff\Output\DiffOnlyOutputBuilder;
-
 $args = $args ?? $argv ?? [];
 if (empty($args))
 {
@@ -45,7 +42,7 @@ $output = [
 	'type'        => $type,
 	'description' => $input['description'] ?? '',
 	'keywords'    => $input['keywords'] ?? ['codeigniter', 'codeigniter4'],
-	'homepage'    => $input['description'] ?? '',
+	'homepage'    => $input['homepage'] ?? '',
 	'license'     => $input['license'] ?? '',
 	'authors'     => $input['authors'] ?? [
 		'name'     => '',
@@ -90,6 +87,7 @@ $output['scripts']['test']    = 'phpunit';
 
 // Format the contents
 $contents = json_encode($output, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL;
+$contents = str_replace('    ', "\t", $contents);
 file_put_contents($file, $contents);
 
 echo 'File updated successfully.' . PHP_EOL;
