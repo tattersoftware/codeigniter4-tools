@@ -5,19 +5,14 @@ parameters:
 		- src
 		- tests
 	bootstrapFiles:
-		- vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php
+		- tests/_support/bootstrap.php
 	excludes_analyse:
-		- src/Config/Routes.php
-		- src/Views/*
+		- src/library/rector.php
 	ignoreErrors:
-		- '#Cannot access property [\$a-z_]+ on (array|object)#'
-		- '#Unsafe usage of new static\(\)*#'
-	universalObjectCratesClasses:
-		- CodeIgniter\Entity
-		- Faker\Generator
 	scanDirectories:
-		- vendor/codeigniter4/codeigniter4/system/Helpers
 	dynamicConstantNames:
-		- APP_NAMESPACE
-		- CI_DEBUG
 		- ENVIRONMENT
+		- HOMEPATH
+		- SOURCEPATH
+		- TESTPATH
+		- SUPPORTPATH
