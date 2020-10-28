@@ -13,9 +13,11 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-TOOLS=`dirname "$0"`
-TARGET="$1"
+# Determine the absolute directory for this script
+cd `dirname "$0"`
+TOOLS=`pwd`
 
+TARGET="$1"
 echo "Applying developer tools to $TARGET"
 
 # Change to the repo directory
@@ -47,14 +49,17 @@ else
 fi
 
 # Apply changes to Composer first so we have all the tools
-php "$TOOLS/composer.php" "$TARGET"
+php "$TOOLS/composer.php" "$TARGET"/composer.json
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
 	echo "Unable to apply Composer toolkit."
 	exit $RESULT
 fi
 
-# Normalize the resulting composer.json
+# Update to make sure we have the rest of the tools
+composer update
+
+# Normalize composer.json
 composer normalize "$TARGET"/composer.json
 
 exit 0
