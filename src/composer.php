@@ -1,34 +1,45 @@
-<?php
+<?php namespace Tatter\Tools;
 
 /**
  * Composer Toolkit
  * composer.php
  *
- * Applies standards to composer.json
+ * Description: Applies standards to composer.json
+ * Usage: php composer.php /path/to/composer.json
  */
 
-$file = realpath($argv[1]);
+use SebastianBergmann\Diff\Differ;
+use SebastianBergmann\Diff\Output\DiffOnlyOutputBuilder;
+
+$args = $args ?? $argv ?? [];
+if (empty($args))
+{
+	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
+	return;
+}
+
+$file = realpath($args[1]);
 
 echo "Processing {$file}..." . PHP_EOL;
 
 // Read file contents
 if (! $raw = file_get_contents($file))
 {
-	echo "Unable to read file." . PHP_EOL;
-	exit 1;
+	echo 'Unable to read file.' . PHP_EOL;
+	return;
 }
 
 // Decode to an array
-if (! $input = json_decode($raw))
+if (! $input = json_decode($raw, true))
 {
-	echo json_last_error_msg();
-	exit 1;
+	echo json_last_error_msg() . PHP_EOL;;
+	return;
 }
 
 // Determine the type
 $type = empty($input['type']) ? 'library' : $input['type'];
 
-// Rebuild in order with some defaults for missing fields
+// Rebuild with some defaults for missing fields
 $output = [
 	'name'        => $input['name'] ?? 'organization/name',
 	'type'        => $type,
@@ -57,9 +68,7 @@ $output = [
 	],
 	'minimum-stability' => 'dev',
 	'prefer-stable'     => true,
-	'scripts'           => $input['scripts'] ?? [ // Additional requirements handled below
-		'post-update-cmd' => ['composer dump-autoload']
-	],
+	'scripts'           => $input['scripts'] ?? [], // Additional requirements handled below
 ];
 
 // Add anything else from the previous file
@@ -78,3 +87,11 @@ $output['scripts']['analyze'] = 'phpstan analyze';
 $output['scripts']['style']   = 'phpcs --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ '
 	. ($type === 'project' ? 'app/' : 'src/');
 $output['scripts']['test']    = 'phpunit';
+
+// Format the contents
+$contents = json_encode($output, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL;
+file_put_contents($file, $contents);
+
+echo 'File updated successfully.' . PHP_EOL;
+
+return;
