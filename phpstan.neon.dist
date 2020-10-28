@@ -7,7 +7,7 @@ parameters:
 	bootstrapFiles:
 		- tests/_support/bootstrap.php
 	excludes_analyse:
-		- src/library/rector.php
+		- src/Library/rector.php
 	ignoreErrors:
 	scanDirectories:
 	dynamicConstantNames:
