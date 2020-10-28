@@ -7,12 +7,13 @@ parameters:
 	bootstrapFiles:
 		- tests/_support/bootstrap.php
 	excludes_analyse:
-		- src/Library/rector.php
+		- src/rector.php
 	ignoreErrors:
 	scanDirectories:
 	dynamicConstantNames:
 		- ENVIRONMENT
 		- HOMEPATH
+		- ROOTPATH
 		- SOURCEPATH
-		- TESTPATH
 		- SUPPORTPATH
+		- TESTPATH
