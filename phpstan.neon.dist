@@ -1,0 +1,19 @@
+parameters:
+	tmpDir: build/phpstan
+	level: 5
+	paths:
+		- src
+		- tests
+	bootstrapFiles:
+		- tests/_support/bootstrap.php
+	excludes_analyse:
+		- src/rector.php
+	ignoreErrors:
+	scanDirectories:
+	dynamicConstantNames:
+		- ENVIRONMENT
+		- HOMEPATH
+		- ROOTPATH
+		- SOURCEPATH
+		- SUPPORTPATH
+		- TESTPATH

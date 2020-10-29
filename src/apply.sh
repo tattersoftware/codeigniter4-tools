@@ -13,10 +13,14 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-TOOLS=`dirname "$0"`
-TARGET="$1"
-
+# Determine the absolute target
+cd "$1"
+TARGET=`pwd`
 echo "Applying developer tools to $TARGET"
+
+# Determine the absolute directory for this script
+cd `dirname "$0"`
+TOOLS=`pwd`
 
 # Change to the repo directory
 cd "$TARGET"
@@ -47,13 +51,30 @@ else
 fi
 
 # Apply changes to Composer first so we have all the tools
-php "$TOOLS/composer.php" "$TARGET"
+php "$TOOLS/composer.php" "$TARGET"/composer.json
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
 	echo "Unable to apply Composer toolkit."
 	exit $RESULT
 fi
 
+# Make sure this package is included
+composer require tatter/tools
 
+# Update to make sure we have the rest of the tools
+composer update
+
+# Normalize composer.json
+composer normalize "$TARGET"/composer.json
+
+# Determine project versus library
+if [ -d "$TARGET"/app ]; then
+	SOURCE="$TOOLS"/Project
+else
+	SOURCE="$TOOLS"/Library
+fi
+
+# Copy missing files
+cp -R -n "$SOURCE"/. "$TARGET"
 
 exit 0

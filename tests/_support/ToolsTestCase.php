@@ -50,7 +50,7 @@ class ToolsTestCase extends TestCase
 	 * Gets the contents of the temporary composer
 	 * file as a decoded array.
 	 *
-	 * @return array|null
+	 * @return array
 	 * @throws \RuntimeException
 	 */
 	protected function getComposer(): array
