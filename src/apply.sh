@@ -59,7 +59,7 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 # Make sure this package is included
-composer require tatter/tools
+composer require --dev tatter/tools
 
 # Update to make sure we have the rest of the tools
 composer update
