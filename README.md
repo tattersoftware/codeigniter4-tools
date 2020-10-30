@@ -1,2 +1,2 @@
-# codeigniter4-tools
+# Tatter\Tools
 Developer tools for CodeIgniter 4
