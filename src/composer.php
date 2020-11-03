@@ -49,10 +49,12 @@ $output = [
 	'homepage'    => $input['homepage'] ?? '',
 	'license'     => $input['license'] ?? '',
 	'authors'     => $input['authors'] ?? [
-		'name'     => '',
-		'email'    => '',
-		'homepage' => '',
-		'role'     => 'Developer'
+		[
+			'name'     => '',
+			'email'    => '',
+			'homepage' => '',
+			'role'     => 'Developer',
+		]
 	],
 	'require'     => $input['require'] ?? [
 		'php' => '>=7.2',

@@ -34,18 +34,18 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 # Check for an existing branch
-if [ "`git branch | grep devtools`" ]; then
-	git switch devtools
+if [ "`git branch | grep tools`" ]; then
+	git switch tools
 	RESULT=$?
 	if [ $RESULT -ne 0 ]; then
-		echo "Unable to switch to the devtools branch."
+		echo "Unable to switch to the tools branch."
 		exit $RESULT
 	fi
 else
-	git switch -c devtools
+	git switch -c tools
 	RESULT=$?
 	if [ $RESULT -ne 0 ]; then
-		echo "Unable to create the devtools branch."
+		echo "Unable to create the tools branch."
 		exit $RESULT
 	fi
 fi
@@ -60,9 +60,19 @@ fi
 
 # Make sure this package is included
 composer require --dev tatter/tools
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+	echo "Unable to add Tools."
+	exit $RESULT
+fi
 
 # Update to make sure we have the rest of the tools
 composer update
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+	echo "Unable to update dependencies."
+	exit $RESULT
+fi
 
 # Normalize composer.json
 composer normalize "$TARGET"/composer.json
@@ -75,6 +85,7 @@ else
 fi
 
 # Copy missing files
+cp -R -n "$TOOLS"/Common/. "$TARGET"
 cp -R -n "$SOURCE"/. "$TARGET"
 
 exit 0
