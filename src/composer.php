@@ -9,7 +9,7 @@
  */
 
 $args = $args ?? $argv ?? [];
-if (empty($args))
+if (empty($args[1]))
 {
 	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
 	return;
@@ -17,7 +17,14 @@ if (empty($args))
 
 if (! $file = realpath($args[1]))
 {
+	echo 'Missing file: "' . $args[1] . '"' . PHP_EOL;
+	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
+	return;
+}
+if (! is_file($file))
+{
 	echo 'Invalid file supplied: "' . $args[1] . '"' . PHP_EOL;
+	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
 	return;
 }
 
@@ -84,7 +91,7 @@ foreach ($keys as $key)
 
 // Make sure development scripts are set
 $output['scripts']['analyze'] = 'phpstan analyze';
-$output['scripts']['style']   = 'phpcs --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
+$output['scripts']['style']   = 'phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
 $output['scripts']['test']    = 'phpunit';
 
 // Format the contents
