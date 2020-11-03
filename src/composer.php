@@ -61,13 +61,10 @@ $output = [
 	],
 	'require-dev' => $input['require-dev'] ?? [], // Additional requirements added by main script
 	'autoload'    => $input['autoload'] ?? [
-		'psr-4' => ['Organization\\\\Name\\\\' => 'src'],
+		'psr-4' => ['Organization\\Name\\' => 'src'],
 	],
 	'autoload-dev'    => $input['autoload-dev'] ?? [
-		'psr-4' => ['Tests\\\\Support\\\\' => 'tests/_support']
-	],
-	'repositories' => $input['repositories'] ?? [
-		['type' => 'vcs', 'url' => 'https://github.com/codeigniter4/CodeIgniter4']
+		'psr-4' => ['Tests\\Support\\' => 'tests/_support']
 	],
 	'minimum-stability' => 'dev',
 	'prefer-stable'     => true,
@@ -87,8 +84,7 @@ foreach ($keys as $key)
 
 // Make sure development scripts are set
 $output['scripts']['analyze'] = 'phpstan analyze';
-$output['scripts']['style']   = 'phpcs --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ '
-	. ($type === 'project' ? 'app/' : 'src/');
+$output['scripts']['style']   = 'phpcs --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
 $output['scripts']['test']    = 'phpunit';
 
 // Format the contents

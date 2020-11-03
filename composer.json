@@ -1,5 +1,6 @@
 {
 	"name": "tatter/tools",
+	"type": "library",
 	"description": "Developer tools for CodeIgniter 4",
 	"keywords": [
 		"codeigniter",
@@ -20,6 +21,7 @@
 	],
 	"require": {
 		"php": ">=7.2",
+		"codeigniter4/codeigniter4": "dev-develop",
 		"codeigniter4/codeigniter4-standard": "^1.0",
 		"ergebnis/composer-normalize": "^2.9",
 		"fakerphp/faker": "^1.10",
@@ -30,7 +32,6 @@
 		"squizlabs/php_codesniffer": "^3.5"
 	},
 	"require-dev": {
-		"codeigniter4/codeigniter4": "dev-develop",
 		"tatter/patches": "^1.0"
 	},
 	"autoload": {
@@ -43,17 +44,17 @@
 			"Tests\\Support\\": "tests/_support"
 		}
 	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"scripts": {
+		"analyze": "phpstan analyze",
+		"style": "phpcs --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ src/",
+		"test": "phpunit"
+	},
 	"repositories": [
 		{
 			"type": "vcs",
 			"url": "https://github.com/codeigniter4/CodeIgniter4"
 		}
-	],
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"scripts": {
-		"analyze": "phpstan analyze",
-		"style": "phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 src/ tests/",
-		"test": "phpunit"
-	}
+	]
 }
