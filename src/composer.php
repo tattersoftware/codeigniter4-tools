@@ -67,9 +67,6 @@ $output = [
 		'php' => '>=7.2',
 	],
 	'require-dev' => $input['require-dev'] ?? [], // Additional requirements added by main script
-	'autoload'    => $input['autoload'] ?? [
-		'psr-4' => ['Organization\\Name\\' => 'src'],
-	],
 	'autoload-dev'    => $input['autoload-dev'] ?? [
 		'psr-4' => ['Tests\\Support\\' => 'tests/_support']
 	],
@@ -77,6 +74,13 @@ $output = [
 	'prefer-stable'     => true,
 	'scripts'           => $input['scripts'] ?? [], // Additional requirements handled below
 ];
+
+if ($type === 'library' && ! isset($input['autoload']))
+{
+	$output['autoload'] = [
+		'psr-4' => ['Organization\\Name\\' => 'src'],
+	];
+}
 
 // Add anything else from the previous file
 $keys = array_keys($input);
