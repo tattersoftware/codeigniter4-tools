@@ -1,0 +1,22 @@
+_spark()
+{
+	local cur
+
+	# Variable to hold the current word
+	cur="${COMP_WORDS[COMP_CWORD]}"
+
+	# Make sure spark is accessible
+	if [ ! -f "$1" ]; then
+		return
+	fi
+	COMPREPLY=()
+
+	# Get the raw list of available commands from
+	# the specific spark instance
+	local commands=`php "$1" list --simple | tail -n +4`
+
+	# Generate possible matches and store them in
+	# the array variable COMPREPLY
+	COMPREPLY=($(compgen -W "${commands}" $cur))
+}
+complete -F _spark spark
