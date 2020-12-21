@@ -88,4 +88,8 @@ fi
 cp -R -n "$TOOLS"/Common/. "$TARGET"
 cp -R -n "$SOURCE"/. "$TARGET"
 
+# Special case for .gitattributes so it does not affect Tools repo
+cp -n "$TOOLS"/Common/gitattributes "$TARGET"/.gitattributes
+rm -f "$TARGET"/gitattributes
+
 exit 0
