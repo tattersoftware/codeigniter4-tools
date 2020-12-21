@@ -63,23 +63,24 @@ $output = [
 			'role'     => 'Developer',
 		]
 	],
-	'require'     => $input['require'] ?? [
-		'php' => '>=7.2',
-	],
-	'require-dev' => $input['require-dev'] ?? [], // Additional requirements added by main script
-	'autoload-dev'    => $input['autoload-dev'] ?? [
-		'psr-4' => ['Tests\\Support\\' => 'tests/_support']
+	'require'      => $input['require'] ?? ['php' => '^7.3'],
+	'require-dev'  => $input['require-dev'] ?? [], // Additional requirements added by main script
+	'autoload'     => $input['autoload'] ?? [], // Additional handling below
+	'autoload-dev' => $input['autoload-dev'] ?? [
+		'psr-4' => ['Tests\\Support\\' => 'tests/_support'],
 	],
 	'minimum-stability' => 'dev',
 	'prefer-stable'     => true,
-	'scripts'           => $input['scripts'] ?? [], // Additional requirements handled below
+	'scripts'           => $input['scripts'] ?? [], // Additional handling below
 ];
 
-if ($type === 'library' && ! isset($input['autoload']))
+if (! isset($input['autoload']['exclude-from-classmap']))
 {
-	$output['autoload'] = [
-		'psr-4' => ['Organization\\Name\\' => 'src'],
-	];
+	$output['autoload']['exclude-from-classmap'] = ['**/Database/Migrations/**'];
+}
+if ($type === 'library' && ! isset($input['autoload']['psr-4']))
+{
+	$output['autoload']['psr-4'] = ['Organization\\Name\\' => 'src'];
 }
 
 // Add anything else from the previous file
