@@ -14,12 +14,12 @@ class Tools extends BaseSource implements SourceInterface
 	 */
 	public $paths = [
 		[
-			'from'    => ROOTPATH . 'vendor/tatter/tools/src/Common',
-			'to'      => '',
+			'from' => ROOTPATH . 'vendor/tatter/tools/src/Common',
+			'to'   => '',
 		],
 		[
-			'from'    => ROOTPATH . 'vendor/tatter/tools/src/Project',
-			'to'      => '',
+			'from' => ROOTPATH . 'vendor/tatter/tools/src/Project',
+			'to'   => '',
 		],
 	];
 }
