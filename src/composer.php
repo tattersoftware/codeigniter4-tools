@@ -63,7 +63,7 @@ $output = [
 			'role'     => 'Developer',
 		]
 	],
-	'require'      => $input['require'] ?? ['php' => '^7.3'],
+	'require'      => $input['require'] ?? ['php' => '^7.3|^8.0'],
 	'require-dev'  => $input['require-dev'] ?? [], // Additional requirements added by main script
 	'autoload'     => $input['autoload'] ?? [], // Additional handling below
 	'autoload-dev' => $input['autoload-dev'] ?? [
