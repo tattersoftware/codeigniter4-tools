@@ -63,7 +63,7 @@ $output = [
 			'role'     => 'Developer',
 		]
 	],
-	'require'      => $input['require'] ?? ['php' => '^7.3|^8.0'],
+	'require'      => $input['require'] ?? ['php' => '^7.3 || ^8.0'],
 	'require-dev'  => $input['require-dev'] ?? [], // Additional requirements added by main script
 	'autoload'     => $input['autoload'] ?? [], // Additional handling below
 	'autoload-dev' => $input['autoload-dev'] ?? [
@@ -82,6 +82,9 @@ if ($type === 'library' && ! isset($input['autoload']['psr-4']))
 {
 	$output['autoload']['psr-4'] = ['Organization\\Name\\' => 'src'];
 }
+
+// Replace old PHP version formats
+$output['require']['php'] = '^7.3 || ^8.0';
 
 // Add anything else from the previous file
 $keys = array_keys($input);
