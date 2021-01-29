@@ -7,16 +7,18 @@ on:
     branches:
       - 'develop'
     paths:
-      - 'src/**'
+      - 'app/**'
       - 'tests/**'
+      - 'composer.**'
       - 'phpstan*'
       - '.github/workflows/analyze.yml'
   push:
     branches:
       - 'develop'
     paths:
-      - 'src/**'
+      - 'app/**'
       - 'tests/**'
+      - 'composer.**'
       - 'phpstan*'
       - '.github/workflows/analyze.yml'
 
