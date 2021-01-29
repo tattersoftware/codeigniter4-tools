@@ -85,11 +85,14 @@ else
 fi
 
 # Copy missing files
-cp -R -n "$TOOLS"/Common/. "$TARGET"
-cp -R -n "$SOURCE"/. "$TARGET"
+cp -R -n "$TOOLS"/Template/. "$TARGET"
+
+# Copy latest files
+cp -R "$TOOLS"/Common/. "$TARGET"
+cp -R "$SOURCE"/. "$TARGET"
 
 # Special case for .gitattributes so it does not affect Tools repo
-cp -n "$TOOLS"/Common/gitattributes "$TARGET"/.gitattributes
+cp "$TOOLS"/Common/gitattributes "$TARGET"/.gitattributes
 rm -f "$TARGET"/gitattributes
 
 exit 0
