@@ -20,11 +20,12 @@
 		}
 	],
 	"require": {
-		"php": "^7.2 || ^8.0",
+		"php": "^7.3 || ^8.0",
 		"codeigniter4/codeigniter4-standard": "^1.0",
 		"ergebnis/composer-normalize": "^2.9",
 		"fakerphp/faker": "^1.9",
 		"friendsofphp/php-cs-fixer": "^2.16",
+		"infection/infection": "^0.21.0",
 		"mikey179/vfsstream": "^1.6",
 		"phpstan/phpstan": "^0.12",
 		"phpunit/phpunit": "^8.0 || ^9.0",
