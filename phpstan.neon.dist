@@ -7,13 +7,17 @@ parameters:
 	bootstrapFiles:
 		- tests/_support/bootstrap.php
 	excludes_analyse:
+		- src/Config/Routes.php
+		- src/Views/*
 		- src/rector.php
 	ignoreErrors:
+	universalObjectCratesClasses:
+		- CodeIgniter\Entity
+		- Faker\Generator
 	scanDirectories:
+		- vendor/codeigniter4/codeigniter4/system/Helpers
 	dynamicConstantNames:
+		- APP_NAMESPACE
+		- CI_DEBUG
 		- ENVIRONMENT
-		- HOMEPATH
-		- ROOTPATH
 		- SOURCEPATH
-		- SUPPORTPATH
-		- TESTPATH
