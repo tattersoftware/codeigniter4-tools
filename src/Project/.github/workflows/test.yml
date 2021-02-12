@@ -65,7 +65,7 @@ jobs:
 
       - if: matrix.php-versions == '8.0'
         name: Run Coveralls
-        run: vendor/bin/php-coveralls --coverage_clover=build/phpunit/clover.xml -v
+        run: vendor/bin/php-coveralls --verbose --coverage_clover=build/phpunit/clover.xml --json_path build/phpunit/coveralls-upload.json
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
