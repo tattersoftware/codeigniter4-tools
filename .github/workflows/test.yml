@@ -45,7 +45,7 @@ jobs:
 
       # Infection does not support 7.3 so remove it before running Composer
       - if: matrix.php-versions == '7.3'
-        run: composer remove --no-progress --no-update --no-scripts --dev infection/infection
+        run: composer remove --no-progress --no-update --no-scripts infection/infection
 
       - name: Install dependencies
         run: composer update --no-progress --no-interaction --prefer-dist --optimize-autoloader
