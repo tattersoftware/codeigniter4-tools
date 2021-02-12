@@ -43,6 +43,10 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      # Infection does not support 7.3 so remove it before running Composer
+      - if: matrix.php-versions == '7.3'
+        run: composer remove --no-progress --no-update --no-scripts --dev infection/infection
+
       - name: Install dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
         env:
@@ -50,16 +54,22 @@ jobs:
 
       - name: Test with PHPUnit
         run: vendor/bin/phpunit --verbose --coverage-text
+        env:
+          TERM: xterm-256color
 
-      - if: matrix.php-versions == '7.4'
-        name: Run Coveralls
+      - if: matrix.php-versions != '7.3'
+        name: Mutate with Infection
         run: |
-          composer global require php-coveralls/php-coveralls:^2.4
-          php-coveralls --coverage_clover=build/logs/clover.xml -v
+          git fetch --depth=1 origin $GITHUB_BASE_REF
+          php vendor/bin/infection --threads=2 --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github --min-msi=80
+
+      - if: matrix.php-versions == '8.0'
+        name: Run Coveralls
+        run: vendor/bin/php-coveralls --verbose --coverage_clover=build/phpunit/clover.xml --json_path build/phpunit/coveralls-upload.json
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-versions }} - ${{ matrix.db-platforms }}
+          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-versions }}
 
   coveralls:
     needs: [main]
