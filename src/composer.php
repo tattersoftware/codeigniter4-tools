@@ -99,7 +99,7 @@ foreach ($keys as $key)
 
 // Make sure development scripts are set
 $output['scripts']['analyze'] = 'phpstan analyze';
-$output['scripts']['mutate'] = 'infection --threads=2 --coverage=build/phpunit';
+$output['scripts']['mutate']  = 'infection --threads=2 --coverage=build/phpunit';
 $output['scripts']['style']   = 'phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
 $output['scripts']['test']    = 'phpunit';
 

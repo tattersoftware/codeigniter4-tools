@@ -43,10 +43,6 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      # Infection does not support 7.3 so remove it before running Composer
-      - if: matrix.php-versions == '7.3'
-        run: composer remove --no-progress --no-update --no-scripts infection/infection
-
       - name: Install dependencies
         run: composer update --no-progress --no-interaction --prefer-dist --optimize-autoloader
         env:
@@ -57,11 +53,12 @@ jobs:
         env:
           TERM: xterm-256color
 
-      - if: matrix.php-versions != '7.3'
+      - if: matrix.php-versions == '8.0'
         name: Mutate with Infection
         run: |
+          composer global require infection/infection
           git fetch --depth=1 origin $GITHUB_BASE_REF
-          php vendor/bin/infection --threads=2 --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
+          infection --threads=2 --coverage=build/phpunit --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
 
       - if: matrix.php-versions == '8.0'
         name: Run Coveralls
@@ -73,9 +70,10 @@ jobs:
 
   coveralls:
     needs: [main]
+    name: Coveralls Finished
     runs-on: ubuntu-latest
     steps:
-      - name: Coveralls Finished
+      - name: Upload Coveralls results
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
