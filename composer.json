@@ -25,7 +25,6 @@
 		"ergebnis/composer-normalize": "^2.9",
 		"fakerphp/faker": "^1.9",
 		"friendsofphp/php-cs-fixer": "^2.16",
-		"infection/infection": "^0.21.0",
 		"mikey179/vfsstream": "^1.6",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/phpstan": "^0.12",
