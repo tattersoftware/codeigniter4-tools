@@ -70,9 +70,10 @@ jobs:
 
   coveralls:
     needs: [main]
+    name: Coveralls Finished
     runs-on: ubuntu-latest
     steps:
-      - name: Coveralls Finished
+      - name: Upload Coveralls results
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
