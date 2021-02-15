@@ -58,7 +58,7 @@ jobs:
         run: |
           composer global require infection/infection
           git fetch --depth=1 origin $GITHUB_BASE_REF
-          infection --threads=2 --coverage=build/phpunit --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
+          infection --threads=2 --skip-initial-tests --coverage=build/phpunit --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github --ignore-msi-with-no-mutations
 
       - if: matrix.php-versions == '8.0'
         name: Run Coveralls
