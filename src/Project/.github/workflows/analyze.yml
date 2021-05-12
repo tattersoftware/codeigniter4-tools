@@ -69,8 +69,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Run static analysis
         run: vendor/bin/phpstan analyze

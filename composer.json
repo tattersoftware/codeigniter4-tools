@@ -29,7 +29,7 @@
 		"nexusphp/tachycardia": "^1.0",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/phpstan": "^0.12",
-		"phpunit/phpunit": "^9.0",
+		"phpunit/phpunit": "^9.3",
 		"squizlabs/php_codesniffer": "^3.5",
 		"tatter/patches": "^1.0"
 	},
