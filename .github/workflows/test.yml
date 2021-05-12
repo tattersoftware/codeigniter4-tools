@@ -31,6 +31,8 @@ jobs:
           tools: composer, pecl, phpunit
           extensions: intl, json, mbstring, gd, mysqlnd, xdebug, xml, sqlite3
           coverage: xdebug
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get composer cache directory
         id: composer-cache
@@ -47,6 +49,9 @@ jobs:
         run: composer update --no-progress --no-interaction --prefer-dist --optimize-autoloader
         env:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: Enable Tachycardia
+        run: echo "TACHYCARDIA_MONITOR_GA=enabled" >> $GITHUB_ENV
 
       - name: Test with PHPUnit
         run: vendor/bin/phpunit --verbose --coverage-text
