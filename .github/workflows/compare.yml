@@ -25,4 +25,4 @@ jobs:
       - name: Run comparison
         uses: docker://nyholm/roave-bc-check-ga
         env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}

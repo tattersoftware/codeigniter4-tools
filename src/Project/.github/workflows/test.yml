@@ -47,8 +47,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Enable Tachycardia
         run: echo "TACHYCARDIA_MONITOR_GA=enabled" >> $GITHUB_ENV
