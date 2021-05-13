@@ -27,3 +27,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 	// register single rule
 	$services->set(TypedPropertyRector::class);
 };
+
