@@ -45,8 +45,15 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install dependencies (limited)
+        if: ${{ github.repository_owner != 'tattersoftware' }}
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install dependencies (authenticated)
+        if: ${{ github.repository_owner == 'tattersoftware' }}
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Enable Tachycardia
         run: echo "TACHYCARDIA_MONITOR_GA=enabled" >> $GITHUB_ENV

@@ -67,8 +67,15 @@ jobs:
           key: ${{ runner.os }}-phpstan-${{ github.sha }}
           restore-keys: ${{ runner.os }}-phpstan-
 
-      - name: Install dependencies
+      - name: Install dependencies (limited)
+        if: ${{ github.repository_owner != 'tattersoftware' }}
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install dependencies (authenticated)
+        if: ${{ github.repository_owner == 'tattersoftware' }}
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Run static analysis
         run: vendor/bin/phpstan analyze

@@ -22,5 +22,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Run comparison
+
+      - name: Run comparison (limited)
+        if: ${{ github.repository_owner != 'tattersoftware' }}
         uses: docker://nyholm/roave-bc-check-ga
+
+      - name: Run comparison (authenticated)
+        if: ${{ github.repository_owner == 'tattersoftware' }}
+        uses: docker://nyholm/roave-bc-check-ga
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
