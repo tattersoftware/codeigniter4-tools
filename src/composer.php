@@ -1,17 +1,19 @@
-<?php namespace Tatter\Tools;
+<?php
+
+namespace Tatter\Tools;
 
 /**
  * Composer Toolkit
- * composer.php
+ * composer.php.
  *
  * Description: Applies standards to composer.json
  * Usage: php composer.php /path/to/composer.json
  */
-
 $args = $args ?? $argv ?? [];
 if (empty($args[1]))
 {
 	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
+
 	return;
 }
 
@@ -19,12 +21,14 @@ if (! $file = realpath($args[1]))
 {
 	echo 'Missing file: "' . $args[1] . '"' . PHP_EOL;
 	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
+
 	return;
 }
 if (! is_file($file))
 {
 	echo 'Invalid file supplied: "' . $args[1] . '"' . PHP_EOL;
 	echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
+
 	return;
 }
 
@@ -34,13 +38,15 @@ echo "Processing {$file}..." . PHP_EOL;
 if (! $raw = file_get_contents($file))
 {
 	echo 'Unable to read file.' . PHP_EOL;
+
 	return;
 }
 
 // Decode to an array
 if (! $input = json_decode($raw, true))
 {
-	echo json_last_error_msg() . PHP_EOL;;
+	echo json_last_error_msg() . PHP_EOL;
+
 	return;
 }
 
@@ -61,7 +67,7 @@ $output = [
 			'email'    => '',
 			'homepage' => '',
 			'role'     => 'Developer',
-		]
+		],
 	],
 	'require'      => $input['require'] ?? ['php' => '^7.3 || ^8.0'],
 	'require-dev'  => $input['require-dev'] ?? [], // Additional requirements added by main script
@@ -100,12 +106,11 @@ foreach ($keys as $key)
 // Make sure development scripts are set
 $output['scripts']['analyze'] = 'phpstan analyze';
 $output['scripts']['mutate']  = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
-$output['scripts']['style']   = 'phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
+$output['scripts']['style']   = 'php-cs-fixer fix --verbose --ansi';
 $output['scripts']['test']    = 'phpunit';
 
 // Format the contents
-$contents = json_encode($output, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL;
-$contents = str_replace('    ', "\t", $contents);
+$contents = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL;
 file_put_contents($file, $contents);
 
 echo 'File updated successfully.' . PHP_EOL;

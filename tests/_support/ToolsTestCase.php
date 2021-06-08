@@ -1,8 +1,11 @@
-<?php namespace Tests\Support;
+<?php
+
+namespace Tests\Support;
 
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
-class ToolsTestCase extends TestCase
+abstract class ToolsTestCase extends TestCase
 {
 	/**
 	 * @var string
@@ -42,7 +45,9 @@ class ToolsTestCase extends TestCase
 		];
 
         ob_start();
+
         include $args[0];
+
         return ob_get_clean();
 	}
 
@@ -50,8 +55,9 @@ class ToolsTestCase extends TestCase
 	 * Gets the contents of the temporary composer
 	 * file as a decoded array.
 	 *
+	 * @throws RuntimeException
+	 *
 	 * @return array
-	 * @throws \RuntimeException
 	 */
 	protected function getComposer(): array
 	{
