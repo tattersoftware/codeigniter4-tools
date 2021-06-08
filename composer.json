@@ -1,65 +1,65 @@
 {
-	"name": "tatter/tools",
-	"type": "library",
-	"description": "Developer tools for CodeIgniter 4",
-	"keywords": [
-		"codeigniter",
-		"codeigniter4",
-		"tools",
-		"toolkit",
-		"development"
-	],
-	"homepage": "https://github.com/tattersoftware/codeigniter4-tools",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Matthew Gatner",
-			"email": "mgatner@tattersoftware.com",
-			"homepage": "https://tattersoftware.com",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": "^7.3 || ^8.0",
-		"ergebnis/composer-normalize": "^2.9",
-		"fakerphp/faker": "^1.9",
-		"friendsofphp/php-cs-fixer": "^3.0",
-		"mikey179/vfsstream": "^1.6",
-		"nexusphp/cs-config": "^3.1",
-		"nexusphp/tachycardia": "^1.0",
-		"php-coveralls/php-coveralls": "^2.4",
-		"phpstan/phpstan": "^0.12",
-		"phpunit/phpunit": "^9.3",
-		"tatter/patches": "^1.0"
-	},
-	"require-dev": {
-		"codeigniter4/codeigniter4": "dev-develop"
-	},
-	"autoload": {
-		"psr-4": {
-			"Tatter\\Tools\\": "src"
-		},
-		"exclude-from-classmap": [
-			"**/Database/Migrations/**"
-		]
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Tests\\Support\\": "tests/_support"
-		}
-	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/codeigniter4/CodeIgniter4"
-		}
-	],
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"scripts": {
-		"analyze": "phpstan analyze",
-		"mutate": "infection --threads=2 --skip-initial-tests --coverage=build/phpunit",
-		"style": "phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ src/",
-		"test": "phpunit"
-	}
+    "name": "tatter/tools",
+    "type": "library",
+    "description": "Developer tools for CodeIgniter 4",
+    "keywords": [
+        "codeigniter",
+        "codeigniter4",
+        "tools",
+        "toolkit",
+        "development"
+    ],
+    "homepage": "https://github.com/tattersoftware/codeigniter4-tools",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew Gatner",
+            "email": "mgatner@tattersoftware.com",
+            "homepage": "https://tattersoftware.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "ergebnis/composer-normalize": "^2.9",
+        "fakerphp/faker": "^1.9",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "mikey179/vfsstream": "^1.6",
+        "nexusphp/cs-config": "^3.1",
+        "nexusphp/tachycardia": "^1.0",
+        "php-coveralls/php-coveralls": "^2.4",
+        "phpstan/phpstan": "^0.12",
+        "phpunit/phpunit": "^9.3",
+        "tatter/patches": "^1.0"
+    },
+    "require-dev": {
+        "codeigniter4/codeigniter4": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tatter\\Tools\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**/Database/Migrations/**"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Support\\": "tests/_support"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/codeigniter4/CodeIgniter4"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "analyze": "phpstan analyze",
+        "mutate": "infection --threads=2 --skip-initial-tests --coverage=build/phpunit",
+        "style": "php-cs-fixer fix --verbose --ansi",
+        "test": "phpunit"
+    }
 }

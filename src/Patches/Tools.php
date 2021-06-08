@@ -1,4 +1,6 @@
-<?php namespace Tatter\Tools\Patches;
+<?php
+
+namespace Tatter\Tools\Patches;
 
 use Tatter\Patches\BaseSource;
 use Tatter\Patches\Interfaces\SourceInterface;
@@ -8,7 +10,7 @@ class Tools extends BaseSource implements SourceInterface
 	/**
 	 * Array of paths to check during patching.
 	 * Required: from (absolute), to (relative)
-	 * Optional: exclude
+	 * Optional: exclude.
 	 *
 	 * @var array
 	 */
