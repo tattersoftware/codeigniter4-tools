@@ -100,12 +100,11 @@ foreach ($keys as $key)
 // Make sure development scripts are set
 $output['scripts']['analyze'] = 'phpstan analyze';
 $output['scripts']['mutate']  = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
-$output['scripts']['style']   = 'phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ ' . ($type === 'project' ? 'app/' : 'src/');
+$output['scripts']['style']   = 'php-cs-fixer fix --verbose --ansi';
 $output['scripts']['test']    = 'phpunit';
 
 // Format the contents
 $contents = json_encode($output, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL;
-$contents = str_replace('    ', "\t", $contents);
 file_put_contents($file, $contents);
 
 echo 'File updated successfully.' . PHP_EOL;
