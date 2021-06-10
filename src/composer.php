@@ -109,6 +109,12 @@ $output['scripts']['mutate']  = 'infection --threads=2 --skip-initial-tests --co
 $output['scripts']['style']   = 'php-cs-fixer fix --verbose --ansi';
 $output['scripts']['test']    = 'phpunit';
 
+# Patches are only relevant to projects
+if ($type === 'project')
+{
+	$output['scripts']['patch'] = 'patch';
+}
+
 // Format the contents
 $contents = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL;
 file_put_contents($file, $contents);
