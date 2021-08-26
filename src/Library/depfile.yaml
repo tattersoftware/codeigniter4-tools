@@ -10,7 +10,7 @@ layers:
       - type: bool
         must:
         - type: className
-          regex: .*[A-Za-z]+Model.*
+          regex: .*[A-Za-z]+Model$
         must_not:
         - type: directory
           regex: vendor/.*
@@ -19,7 +19,7 @@ layers:
       - type: bool
         must:
         - type: className
-          regex: .*[A-Za-z]+Model.*
+          regex: .*[A-Za-z]+Model$
         - type: directory
           regex: vendor/.*
   - name: Controller
