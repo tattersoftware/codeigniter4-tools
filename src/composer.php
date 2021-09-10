@@ -95,11 +95,21 @@ foreach ($keys as $key) {
 }
 
 // Make sure development scripts are set
-$output['scripts']['analyze'] = 'phpstan analyze';
-$output['scripts']['inspect'] = 'deptrac analyze --cache-file=build/deptrac.cache';
-$output['scripts']['mutate']  = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
-$output['scripts']['style']   = 'php-cs-fixer fix --verbose --ansi';
-$output['scripts']['test']    = 'phpunit';
+$output['scripts']['deduplicate'] = 'phpcpd app/ src/';
+$output['scripts']['analyze']     = 'phpstan analyze';
+$output['scripts']['inspect']     = 'deptrac analyze --cache-file=build/deptrac.cache';
+$output['scripts']['mutate']      = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
+$output['scripts']['style']       = 'php-cs-fixer fix --verbose --ansi --using-cache=no';
+$output['scripts']['test']        = 'phpunit';
+$output['scripts']['ci']          = [
+    'Composer\\Config::disableProcessTimeout',
+    '@deduplicate',
+    '@analyze',
+    '@test',
+    '@mutate',
+    '@inspect',
+    '@style',
+];
 
 // Patches are only relevant to projects
 if ($type === 'project') {
