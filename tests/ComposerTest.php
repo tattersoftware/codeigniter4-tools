@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of Tatter Tools.
+ *
+ * (c) 2021 Tatter Software
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 use Tests\Support\ToolsTestCase;
 
 /**
@@ -111,8 +120,6 @@ final class ComposerTest extends ToolsTestCase
     /**
      * Includes the composer.php file and returns
      * the command output.
-     *
-     * @return string
      */
     private function runComposer(): string
     {
@@ -131,8 +138,6 @@ final class ComposerTest extends ToolsTestCase
     /**
      * Gets the contents of the temporary composer
      * file as a decoded array.
-     *
-     * @return array
      */
     private function getComposer(): array
     {
