@@ -1,8 +1,8 @@
 <?php
 
+use CodeIgniter\CodingStandard\CodeIgniter4;
 use Nexus\CsConfig\Factory;
 use PhpCsFixer\Finder;
-use Tatter\Tools\Standard;
 
 $finder = Finder::create()
     ->files()
@@ -22,4 +22,13 @@ $options = [
     'cacheFile' => 'build/.php-cs-fixer.cache',
 ];
 
-return Factory::create(new Standard(), $overrides, $options)->forProjects();
+return Factory::create(new CodeIgniter4(), $overrides, $options)->forProjects();
+
+/* Reenable For libraries after incremental changes are applied
+return Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
+    'Tatter ________',
+    'Tatter Software',
+    '',
+    2021
+);
+ */
