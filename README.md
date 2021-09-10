@@ -1,7 +1,51 @@
 # Tatter\Tools
 Developer tools for CodeIgniter 4
 
-## Spark Autocomplete
+[![](https://github.com/tattersoftware/codeigniter4-tools/workflows/PHPUnit/badge.svg)](https://github.com/tattersoftware/codeigniter4-tools/actions/workflows/test.yml)
+[![](https://github.com/tattersoftware/codeigniter4-tools/workflows/PHPStan/badge.svg)](https://github.com/tattersoftware/codeigniter4-tools/actions/workflows/analyze.yml)
+[![](https://github.com/tattersoftware/codeigniter4-tools/workflows/Deptrac/badge.svg)](https://github.com/tattersoftware/codeigniter4-tools/actions/workflows/inspect.yml)
+[![Coverage Status](https://coveralls.io/repos/github/tattersoftware/codeigniter4-tools/badge.svg?branch=develop)](https://coveralls.io/github/tattersoftware/codeigniter4-tools?branch=develop)
+
+## Installation
+
+* Install via Composer: `> composer require tatter/tools`
+
+## Included
+
+### Support Tools
+
+* [Tatter/Patches](https://github.com/tattersoftware/codeigniter4-patches)
+
+### Styles and Standards
+
+* [CodeIgniter Coding Standard](https://github.com/CodeIgniter/coding-standard)
+* Ergebnis' Composer Normalize
+* NexusPHP CS Config
+* PHP CS Fixer
+
+### Testing and Analysis
+
+* NexusPHP Tachycardia
+* PHP Coveralls
+* PHPStan
+* PHPUnit
+
+### Mocking
+
+* FakerPHP
+* VFS Stream
+
+## Usage
+
+### Applying Toolkit
+
+Apply the development toolkit using the bash script:
+
+* ./vendor/tatter/tools/src/apply.sh <path_to_project_repository>
+
+The script will create
+
+### Spark Autocomplete
 
 **Tools** includes a directive for Bash's
 [Programmable Completion](http://www.gnu.org/software/bash/manual/bash.html#Programmable-Completion)
