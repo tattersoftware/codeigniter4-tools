@@ -31,6 +31,7 @@
         "php-coveralls/php-coveralls": "^2.4",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^9.3",
+        "roave/security-advisories": "dev-latest",
         "tatter/patches": "^2.0"
     },
     "require-dev": {
