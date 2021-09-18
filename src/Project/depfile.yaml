@@ -130,6 +130,7 @@ ruleset:
     - Vendor Model
     - Vendor View
   Vendor Config:
+    - Config
     - Service
     - Vendor Config
     - Vendor Controller
