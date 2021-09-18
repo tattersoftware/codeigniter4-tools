@@ -29,7 +29,9 @@
         "nexusphp/cs-config": "^3.1",
         "nexusphp/tachycardia": "^1.0",
         "php-coveralls/php-coveralls": "^2.4",
+        "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-deprecation-rules": "^0.12.6",
         "phpunit/phpunit": "^9.3",
         "roave/security-advisories": "dev-latest",
         "tatter/patches": "^2.0"
