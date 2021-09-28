@@ -35,6 +35,16 @@ Developer tools for CodeIgniter 4
 * FakerPHP
 * VFS Stream
 
+## Additional Tools
+
+These are integrated into the workflows but not included via Composer so need to be installed separately.
+All of them are available via [Phive](https://phar.io/#Tools).
+
+* [Composer Normalize](https://github.com/ergebnis/composer-normalize)
+* [Infection](https://infection.github.io/)
+* [PHP Coveralls](https://php-coveralls.github.io/php-coveralls/)
+* [PHP CS Fixer](https://cs.symfony.com/)
+
 ## Usage
 
 ### Applying Toolkit
