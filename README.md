@@ -19,14 +19,11 @@ Developer tools for CodeIgniter 4
 ### Styles and Standards
 
 * [CodeIgniter Coding Standard](https://github.com/CodeIgniter/coding-standard)
-* Ergebnis' Composer Normalize
 * NexusPHP CS Config
-* PHP CS Fixer
 
 ### Testing and Analysis
 
 * NexusPHP Tachycardia
-* PHP Coveralls
 * PHPStan
 * PHPUnit
 
