@@ -75,7 +75,7 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 # Normalize composer.json
-composer normalize "$TARGET"/composer.json
+composer-normalize "$TARGET"/composer.json
 
 # Determine project versus library
 if [ -d "$TARGET"/app ]; then
