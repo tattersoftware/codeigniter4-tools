@@ -116,6 +116,7 @@ ruleset:
 
   # Ignore anything in the Vendor layers
   Vendor Model:
+    - Config
     - Service
     - Vendor Config
     - Vendor Controller
