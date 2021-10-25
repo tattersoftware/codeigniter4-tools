@@ -38,6 +38,7 @@ These are integrated into the workflows but not included via Composer so need to
 All of them are available via [Phive](https://phar.io/#Tools).
 
 * [Composer Normalize](https://github.com/ergebnis/composer-normalize)
+* [Composer Unused](https://github.com/composer-unused/composer-unused)
 * [Infection](https://infection.github.io/)
 * [PHP Coveralls](https://php-coveralls.github.io/php-coveralls/)
 * [PHP CS Fixer](https://cs.symfony.com/)
@@ -50,7 +51,8 @@ Apply the development toolkit using the bash script:
 
 * ./vendor/tatter/tools/src/apply.sh <path_to_project_repository>
 
-The script will create
+The script will create a `tools` branch and make all the additions and changes there so you
+can review before applying to your repository.
 
 ### Spark Autocomplete
 

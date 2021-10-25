@@ -75,5 +75,5 @@ jobs:
 
       - name: Run architectural inspection
         run: |
-            sudo phive --no-progress install --global --trust-gpg-keys B8F640134AB1782E,A98E898BB53EB748 qossmic/deptrac
-            deptrac analyze --cache-file=build/deptrac.cache
+          sudo phive --no-progress install --global --trust-gpg-keys B8F640134AB1782E,A98E898BB53EB748 qossmic/deptrac
+          deptrac analyze --cache-file=build/deptrac.cache

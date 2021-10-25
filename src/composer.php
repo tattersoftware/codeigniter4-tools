@@ -116,7 +116,7 @@ $output['scripts']['ci']          = [
     '@deduplicate',
     '@analyze',
     '@test',
-    '@mutate',
+    // '@mutate', Disabled until most libraries handle mutations properly
     '@inspect',
     '@style',
 ];
