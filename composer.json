@@ -27,9 +27,9 @@
         "nexusphp/cs-config": "^3.1",
         "nexusphp/tachycardia": "^1.0",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^0.12",
-        "phpstan/phpstan-deprecation-rules": "^0.12.6",
-        "phpstan/phpstan-phpunit": "^0.12.22",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.3",
         "roave/security-advisories": "dev-latest",
         "tatter/patches": "^2.0"
