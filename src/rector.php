@@ -38,6 +38,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         realpath(getcwd()) . '/vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php',
     ]);
 
+    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
     $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
 
     // Some opinionated rules that may merit skipping
