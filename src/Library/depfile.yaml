@@ -109,6 +109,7 @@ ruleset:
     - Entity
     - Service
     - Vendor Config
+    - Vendor Entity
     - Vendor Model
   Service:
     - Config
