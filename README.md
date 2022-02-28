@@ -10,51 +10,28 @@ Developer tools for CodeIgniter 4
 
 * Install via Composer: `> composer require tatter/tools`
 
+## Description
+
+**Tools** is an opinionated wrapper for the [CodeIgniter DevKit](https://github.com/codeigniter4/devkit/).
+It includes a script to apply the DevKit to libraries (instead of the default, for projects)
+and some custom updates to the template files.
+
 ## Included
 
-### Support Tools
-
-* [Tatter/Patches](https://github.com/tattersoftware/codeigniter4-patches)
-
-### Styles and Standards
-
-* [CodeIgniter Coding Standard](https://github.com/CodeIgniter/coding-standard)
-* NexusPHP CS Config
-
-### Testing and Analysis
-
-* NexusPHP Tachycardia
-* PHPStan
-* PHPUnit
-
-### Mocking
-
-* FakerPHP
-* VFS Stream
-
-## Additional Tools
-
-These are integrated into the workflows but not included via Composer so need to be installed separately.
-All of them are available via [Phive](https://phar.io/#Tools).
-
-* [Composer Normalize](https://github.com/ergebnis/composer-normalize)
-* [Composer Unused](https://github.com/composer-unused/composer-unused)
-* [Infection](https://infection.github.io/)
-* [PHP Coveralls](https://php-coveralls.github.io/php-coveralls/)
-* [PHP CS Fixer](https://cs.symfony.com/)
+See the [DevKit docs](https://github.com/codeigniter4/devkit/blob/develop/README.md) for a
+complete list of bundled tools.
 
 ## Usage
 
 ### Applying Toolkit
 
-Apply the development toolkit using the bash script:
+Apply the development toolkit using the bash script from the directory where you wish it to apply:
 
-* ./vendor/tatter/tools/src/apply.sh <path_to_project_repository>
+* ./vendor/tatter/tools/src/retool
+... or:
+* composer retool
 
-The script will create a `tools` branch and make all the additions and changes there so you
-can review before applying to your repository.
-
-### Spark Autocomplete
+## Spark Autocomplete
 
 **Tools** includes a directive for Bash's
 [Programmable Completion](http://www.gnu.org/software/bash/manual/bash.html#Programmable-Completion)
