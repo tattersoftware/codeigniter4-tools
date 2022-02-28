@@ -81,4 +81,9 @@ cp -R -n "$TOOLS"/Template/. "$ROOT"
 # Special case for .gitattributes so it does not affect Tools repo
 mv -f "$ROOT"/gitattributes "$ROOT"/.gitattributes
 
+# Libraries do not need the IDE files
+if [ -d "$ROOT/src" ]; then
+	rm -rf "$ROOT/ide"
+fi
+
 exit 0

@@ -18,7 +18,7 @@ namespace Tatter\Tools;
  * Description: Applies standards to composer.json
  * Usage: php composer.php /path/to/composer.json
  */
-$args = $args ?? $argv ?? [];
+$args ??= $argv ?? [];
 if (empty($args[1])) {
     echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
 

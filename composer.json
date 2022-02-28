@@ -26,6 +26,11 @@
     "require-dev": {
         "codeigniter4/framework": "^4.1"
     },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
     "autoload": {
         "psr-4": {
             "Tatter\\Tools\\": "src"
@@ -45,11 +50,11 @@
             "url": "https://github.com/codeigniter4/CodeIgniter4"
         }
     ],
-	"bin": [
-		"src/retool"
-	],
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "bin": [
+        "src/retool"
+    ],
     "scripts": {
         "analyze": "phpstan analyze",
         "ci": [
@@ -58,18 +63,14 @@
             "@analyze",
             "@test",
             "@inspect",
-            "@style",
-            "@rector process -vv"
+            "rector process",
+            "@style"
         ],
         "deduplicate": "phpcpd app/ src/",
         "inspect": "deptrac analyze --cache-file=build/deptrac.cache",
         "mutate": "infection --threads=2 --skip-initial-tests --coverage=build/phpunit",
+        "retool": "retool",
         "style": "php-cs-fixer fix --verbose --ansi --using-cache=no",
         "test": "phpunit"
-    },
-    "config": {
-        "allow-plugins": {
-            "phpstan/extension-installer": true
-        }
     }
 }

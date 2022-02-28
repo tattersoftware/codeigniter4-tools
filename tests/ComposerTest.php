@@ -16,10 +16,7 @@ use Tests\Support\ToolsTestCase;
  */
 final class ComposerTest extends ToolsTestCase
 {
-    /**
-     * @var string
-     */
-    private $composer;
+    private string $composer;
 
     protected function setUp(): void
     {
