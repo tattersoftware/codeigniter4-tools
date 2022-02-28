@@ -20,22 +20,11 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
-        "codeigniter/coding-standard": "^1.1",
-        "fakerphp/faker": "^1.9",
-        "mikey179/vfsstream": "^1.6",
-        "nexusphp/cs-config": "^3.1",
-        "nexusphp/tachycardia": "^1.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.0",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.3",
-        "roave/security-advisories": "dev-latest",
-        "tatter/patches": "^2.0"
+        "php": "^7.4 || ^8.0",
+        "codeigniter4/devkit": "^1.0"
     },
     "require-dev": {
-        "codeigniter4/codeigniter4": "dev-develop"
+        "codeigniter4/framework": "^4.1"
     },
     "autoload": {
         "psr-4": {
@@ -56,6 +45,9 @@
             "url": "https://github.com/codeigniter4/CodeIgniter4"
         }
     ],
+	"bin": [
+		"src/retool"
+	],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
@@ -65,14 +57,19 @@
             "@deduplicate",
             "@analyze",
             "@test",
-            "@mutate",
             "@inspect",
-            "@style"
+            "@style",
+            "@rector process -vv"
         ],
         "deduplicate": "phpcpd app/ src/",
         "inspect": "deptrac analyze --cache-file=build/deptrac.cache",
         "mutate": "infection --threads=2 --skip-initial-tests --coverage=build/phpunit",
         "style": "php-cs-fixer fix --verbose --ansi --using-cache=no",
         "test": "phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }
