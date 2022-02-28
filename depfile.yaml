@@ -1,7 +1,6 @@
 paths:
-  - ./src
-  - ./vendor/codeigniter4/codeigniter4/system
-  - ./vendor/tatter
+  - ./src/
+  - ./vendor/codeigniter4/framework/system/
 exclude_files:
   - '#.*test.*#i'
 layers:
@@ -109,6 +108,7 @@ ruleset:
     - Entity
     - Service
     - Vendor Config
+    - Vendor Entity
     - Vendor Model
   Service:
     - Config
@@ -116,6 +116,7 @@ ruleset:
 
   # Ignore anything in the Vendor layers
   Vendor Model:
+    - Config
     - Service
     - Vendor Config
     - Vendor Controller

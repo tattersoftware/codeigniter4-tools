@@ -18,7 +18,7 @@ namespace Tatter\Tools;
  * Description: Applies standards to composer.json
  * Usage: php composer.php /path/to/composer.json
  */
-$args = $args ?? $argv ?? [];
+$args ??= $argv ?? [];
 if (empty($args[1])) {
     echo 'Usage: php composer.php /path/to/composer.json' . PHP_EOL;
 
@@ -73,7 +73,15 @@ $output = [
             'role'     => 'Developer',
         ],
     ],
-    'require'      => $input['require'] ?? ['php' => '^7.3 || ^8.0'],
+    'config' => $input['config'] ?? [
+        'optimize-autoloader' => true,
+        'sort-packages'       => true,
+        'allow-plugins'       => [
+            'infection/extension-installer' => true,
+            'phpstan/extension-installer'   => true,
+        ],
+    ],
+    'require'      => $input['require'] ?? ['php' => '^7.4 || ^8.0'],
     'require-dev'  => $input['require-dev'] ?? [], // Additional requirements added by main script
     'autoload'     => $input['autoload'] ?? [], // Additional handling below
     'autoload-dev' => $input['autoload-dev'] ?? [
@@ -92,7 +100,7 @@ if ($type === 'library' && ! isset($input['autoload']['psr-4'])) {
 }
 
 // Replace old PHP version formats
-$output['require']['php'] = '^7.3 || ^8.0';
+$output['require']['php'] = '^7.4 || ^8.0';
 
 // Add anything else from the previous file
 $keys = array_keys($input);
@@ -109,6 +117,7 @@ $output['scripts']['deduplicate'] = 'phpcpd app/ src/';
 $output['scripts']['analyze']     = 'phpstan analyze';
 $output['scripts']['inspect']     = 'deptrac analyze --cache-file=build/deptrac.cache';
 $output['scripts']['mutate']      = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
+$output['scripts']['retool']      = 'retool'; // that's us!
 $output['scripts']['style']       = 'php-cs-fixer fix --verbose --ansi --using-cache=no';
 $output['scripts']['test']        = 'phpunit';
 $output['scripts']['ci']          = [
@@ -118,6 +127,7 @@ $output['scripts']['ci']          = [
     '@test',
     // '@mutate', Disabled until most libraries handle mutations properly
     '@inspect',
+    'rector process',
     '@style',
 ];
 

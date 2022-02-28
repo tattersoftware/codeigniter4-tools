@@ -1,0 +1,89 @@
+#!/bin/sh
+
+##
+# CodeIgniter 4 Developer Tools
+# https://github.com/tattersoftware/codeigniter4-tools
+#
+# Applies all developer tools to the current repository.
+##
+
+ROOT=`pwd`
+TOOLS=`dirname "$0"`
+DEVKIT="$ROOT/vendor/codeigniter4/devkit/src/Template"
+
+# Error handling
+try()
+{
+	CODE=$1
+	if [ $CODE -eq 0 ]; then
+		return 0
+	fi
+
+	# Get the message from the remaining arguments
+	shift;
+	MESSAGE=$@
+
+	echo "ERROR $CODE: $MESSAGE"
+	exit $CODE
+}
+
+# Verify executables
+composer --version
+try $? "Composer must be installed."
+
+# Verify the DevKit vendor path
+if [ ! -d "$DEVKIT" ]; then
+	try 1 "Missing codeigniter4/devkit - try installing it with Composer."
+fi
+
+# Determine whether this is a Project or a Library
+if [ -d "$ROOT/app" ]; then
+	SOURCE="$TOOLS"/Project
+# Libraries need to convert paths in the DevKit files
+elif [ -d "$ROOT/src" ]; then
+	SOURCE="$TOOLS"/Library
+
+	# Create a scratch workspace with the original content
+	SCRATCH=`mktemp -d`
+	cp -R "$DEVKIT"/. "$SCRATCH"
+
+	# Replace all references to "app/" with "src/"
+	find "$SCRATCH" -type f -print0 | xargs -0 sed -i 's#app\/#src\/#g'
+
+	# Fix one specific mishap
+	sed -i 's#coverallssrc#coverallsapp#g' "$SCRATCH/.github/workflows/phpunit.yml"
+
+	# Point PHPUnit paths to vendor
+	sed -i 's#<const name="CONFIGPATH" value="\./src/Config/"/>#<const name="CONFIGPATH" value="\./vendor/codeigniter4/framework/app/Config/"/>#g' "$SCRATCH/phpunit.xml.dist"
+	sed -i 's#<const name="PUBLICPATH" value="\./public/"/>#<const name="PUBLICPATH" value="\./vendor/codeigniter4/framework/public/"/>#g' "$SCRATCH/phpunit.xml.dist"
+
+	DEVKIT="$SCRATCH"
+else
+	try 1 "Unable to differentiate Project or Library from the repo."
+fi
+
+# Apply changes to Composer first
+php "$TOOLS/composer.php" "$ROOT/composer.json"
+try $? "Unable to apply Composer changes."
+
+# Normalize composer.json
+composer-normalize "$ROOT"/composer.json
+
+# Copy latest DevKit files
+cp -R "$DEVKIT"/. "$ROOT"
+
+# Copy the appropriate files from Tools
+cp -R "$SOURCE"/. "$ROOT"
+
+# Copy any missing Template files
+cp -R -n "$TOOLS"/Template/. "$ROOT"
+
+# Special case for .gitattributes so it does not affect Tools repo
+mv -f "$ROOT"/gitattributes "$ROOT"/.gitattributes
+
+# Libraries do not need the IDE files
+if [ -d "$ROOT/src" ]; then
+	rm -rf "$ROOT/ide"
+fi
+
+exit 0
