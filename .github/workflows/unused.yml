@@ -57,4 +57,4 @@ jobs:
           fi
 
       - name: Detect unused packages
-        run: composer-unused -vvv --output-format=github --ansi --no-interaction --no-progress
+        run: composer-unused -vvv --output-format=github --ansi --no-interaction --no-progress --excludePackage=codeigniter4/devkit
