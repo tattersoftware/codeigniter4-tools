@@ -98,7 +98,7 @@ final class ComposerTest extends ToolsTestCase
         $this->assertSame('MIT', $result['license']);
 
         // Verify new field
-        $this->assertSame('phpstan analyze', $result['scripts']['analyze']);
+        $this->assertSame(['phpstan analyze', 'psalm'], $result['scripts']['analyze']);
     }
 
     /**
