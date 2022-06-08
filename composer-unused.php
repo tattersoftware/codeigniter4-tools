@@ -9,8 +9,7 @@ use Webmozart\Glob\Glob;
 
 return static function (Configuration $config): Configuration {
     return $config
-        // ->addNamedFilter(NamedFilter::fromString('symfony/config'))
-        // ->addPatternFilter(PatternFilter::fromString('/symfony-.*/'))
+        ->addNamedFilter(NamedFilter::fromString('codeigniter4/devkit'))
         ->setAdditionalFilesFor('codeigniter4/framework', [
             ...Glob::glob(__DIR__ . '/vendor/codeigniter4/framework/system/Helpers/*.php'),
         ]);
