@@ -114,7 +114,7 @@ foreach ($keys as $key) {
 
 // Make sure development scripts are set
 $output['scripts']['deduplicate'] = 'phpcpd app/ src/';
-$output['scripts']['analyze']     = 'phpstan analyze';
+$output['scripts']['analyze']     = ['phpstan analyze', 'psalm'];
 $output['scripts']['inspect']     = 'deptrac analyze --cache-file=build/deptrac.cache';
 $output['scripts']['mutate']      = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
 $output['scripts']['retool']      = 'retool'; // that's us!
