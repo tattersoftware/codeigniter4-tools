@@ -67,7 +67,7 @@ php "$TOOLS/composer.php" "$ROOT/composer.json"
 try $? "Unable to apply Composer changes."
 
 # Normalize composer.json
-composer-normalize "$ROOT"/composer.json
+composer normalize "$ROOT"/composer.json
 
 # Copy latest DevKit files
 cp -R "$DEVKIT"/. "$ROOT"
