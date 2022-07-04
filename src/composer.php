@@ -114,7 +114,7 @@ foreach ($keys as $key) {
 
 // Make sure development scripts are set
 $output['scripts']['deduplicate'] = 'phpcpd app/ src/';
-$output['scripts']['analyze']     = ['phpstan analyze', 'psalm'];
+$output['scripts']['analyze']     = ['phpstan analyze', 'psalm', 'rector process --dry-run'];
 $output['scripts']['inspect']     = 'deptrac analyze --cache-file=build/deptrac.cache';
 $output['scripts']['mutate']      = 'infection --threads=2 --skip-initial-tests --coverage=build/phpunit';
 $output['scripts']['retool']      = 'retool'; // that's us!
@@ -124,10 +124,10 @@ $output['scripts']['ci']          = [
     'Composer\\Config::disableProcessTimeout',
     '@deduplicate',
     '@analyze',
+    '@composer normalize --dry-run',
     '@test',
     // '@mutate', Disabled until most libraries handle mutations properly
     '@inspect',
-    'rector process',
     '@style',
 ];
 
